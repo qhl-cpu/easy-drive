@@ -194,11 +194,11 @@ const BasicForm = () => {
 
             <Controller
                 control={control}
-                name="province"
+                name="re_password"
                 render={({ field }) => (
                     <TextField
-                        id="province"
-                        label="Province*"
+                        id="re_pass-word"
+                        label="Re_password*"
                         variant="outlined"
                         placeholder="Re-enter Your Password"
                         fullWidth
@@ -272,6 +272,22 @@ const ContactForm = () => {
                         label="City*"
                         variant="outlined"
                         placeholder="Enter Your City"
+                        fullWidth
+                        margin="normal"
+                        {...field}
+                    />
+                )}
+            />
+
+            <Controller
+                control={control}
+                name="province"
+                render={({ field }) => (
+                    <TextField
+                        id="province"
+                        label="Province*"
+                        variant="outlined"
+                        placeholder="Enter Your Province"
                         fullWidth
                         margin="normal"
                         {...field}
@@ -473,7 +489,7 @@ const SignUpInstructor = () => {
             first_name: '',
             last_name: '',
             password: '',
-            // province: '',
+            re_password: '',
             email: '',
             phone: '',
             // gender: '',
@@ -531,7 +547,7 @@ const SignUpInstructor = () => {
                     !data.first_name ||
                     !data.last_name ||
                     !data.password ||
-                    !data.province
+                    !data.re_password
                 ) {
                     toast.error('Please fill the required space.')
                     return
@@ -540,10 +556,10 @@ const SignUpInstructor = () => {
                     toast.error('Passwords must be at least 8 characters long.')
                     return
                 }
-                // if (data.password !== data.province) {
-                //     toast.error('Re-entered password does not match.')
-                //     return
-                // }
+                if (data.password !== data.re_password) {
+                    toast.error('Re-entered password does not match.')
+                    return
+                }
             }
             if (activeStep === 1) {
                 if (
@@ -551,6 +567,7 @@ const SignUpInstructor = () => {
                     !data.phone ||
                     !data.street ||
                     !data.city ||
+                    !data.province ||
                     !data.country
                 ) {
                     toast.error('Please fill the required space.')
@@ -698,7 +715,7 @@ const SignUpInstructor = () => {
                                                     type="submit"
                                                 >
                                                     {activeStep ===
-                                                    steps.length - 1
+                                                        steps.length - 1
                                                         ? 'Finish'
                                                         : 'Next'}
                                                 </Button>
